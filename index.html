@@ -3,6 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<title>stark</title>
   <style type='text/css'>
     ul { list-style: none; }
@@ -91,7 +92,7 @@ var formData = new FormData();
       // formData.append("file", $("#upload")[0].files[0]);
       // formData.append("name", name);
       $.ajax({
-        url: 'ce.php', // 存储音频接口
+        url: 'http://120.79.165.85/voice/ce.php', // 存储音频接口
         // url: 'http://localhost:8000/v1/file/upload-file',
         type: 'POST',
         data: formData,
