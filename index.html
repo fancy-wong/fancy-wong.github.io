@@ -19,7 +19,7 @@
   <button onclick="stopRecording(this);" disabled>停止</button>
   
   <h2>录音</h2>
-  <ul id="recordingslist"></ul>
+  <span id="recordingslist"></span>
   
   <h2>日志</h2>
   <pre id="log"></pre>
@@ -91,7 +91,7 @@ var formData = new FormData();
       // formData.append("file", $("#upload")[0].files[0]);
       // formData.append("name", name);
       $.ajax({
-        url: 'ce.php', // 存储音频接口
+        url: 'http://120.79.165.85/voice/ce.php', // 存储音频接口
         // url: 'http://localhost:8000/v1/file/upload-file',
         type: 'POST',
         data: formData,
@@ -102,26 +102,14 @@ var formData = new FormData();
           console.log("正在进行，请稍候");
         },
         success: function (responseStr) {
-            console.log("成功" + responseStr);
-       
+          $('#recordingslist').append("成功："+responseStr+"<br>");
         },
         error: function (responseStr) {
           console.log("error");
         }
       });
 
-      var li = document.createElement('li');
-      var au = document.createElement('audio');
-      var hf = document.createElement('a');
-      
-      au.controls = true;
-      au.src = url;
-      hf.href = url;
-      hf.download = new Date().toISOString() + '.wav';
-      hf.innerHTML = hf.download;
-      li.appendChild(au);
-      li.appendChild(hf);
-      recordingslist.appendChild(li);
+
 
     });
     recorder && recorder.clear();
